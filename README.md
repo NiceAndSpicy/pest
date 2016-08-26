@@ -46,3 +46,19 @@ index.php
 
 
 ```
+Additional
+```php
+	Class Beer
+	{
+		public static $isdelicious = true;
+		public static $substance = null;
+	}
+	Tester::describe("is the beer delicious?")
+    	   ->expect(Beer::$isdelicious)
+    	   ->toBeTruthy();
+    	   
+    	Tester::describe("is the sum of 1 and 2 less than 4?")
+    	   ->expect(sum(1,2))->toBeLessThan(4);
+    	   
+    	Tester::describe("The beer substance is null")
+    	   ->expect(Beer::$substance)->toBeNull();	
