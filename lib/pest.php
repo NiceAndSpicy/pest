@@ -36,6 +36,9 @@ class Expector
 		elseif (function_exists($func)) {
 			$res = call_user_func($func);
 		}
+		elseif (is_bool($func)){
+			$res = $func;
+		}
 		else{
 			$res = $func;
 		}
@@ -47,6 +50,9 @@ class Expector
 /**
  * Comparer class
  */
+define("_msgtrue_", "<br /> Test Done : Congrats dude, result is True <hr /> ");
+define("_msgfalse_","<br /> Test Done: Sorry dude, result is false <hr />");
+
 class Comparer
 {
 	public $function_result;
@@ -61,9 +67,9 @@ class Comparer
 	 */
 	public function toBe($result){
 		if ($this->function_result == $result) {
-			echo "<br /> Test Done : Congrats dude, result is True <hr /> ";
+			echo _msgtrue_;
 		}else{
-			echo "<br /> Test Done: Sorry dude, result is false <hr /> ";
+			echo _msgfalse_;
 		}
 	}
 	/**
@@ -72,10 +78,61 @@ class Comparer
 	 */
 	public function notToBe($result){
 		if ($this->function_result != $result) {
-			echo "<br /> Test Done : Congrats dude, result is True <hr /> ";
+			echo _msgtrue_;
 		}else{
-			echo "<br /> Test Done: Sorry dude, result is false <hr /> ";
+			echo _msgtrue_;
 		}		
+	}
+
+	/**
+	 * toBeTruthy
+	 */
+	public function toBeTruthy(){
+		if ($this->function_result) {
+			echo _msgtrue_;
+		} else { echo _msgfalse_; }
+	}
+	/**
+	 * toBeFalsy
+	 */
+	public function toBeFalsy(){
+		if (!$this->function_result) {
+			echo _msgtrue_;
+		} else { echo _msgfalse_; }
+	}
+	/**
+	 * toContain
+	 * @param string
+	 */
+	public function toContain($val){
+		// shit
+	}
+
+	/**
+	 * toBeNull
+	 */
+	public function toBeNull(){
+		if (is_null($this->function_result)) {
+			echo _msgtrue_;
+		} else { echo _msgfalse_; }
+	}
+
+	/**
+	 * toBeLessThan
+	 */
+	public function toBeLessThan($num){
+		if ($this->function_result < $num) {
+			echo _msgtrue_;
+		} else { echo _msgfalse_; }
+	}
+
+	/**
+	 * toBeGreaterThan
+	 */
+	public function toBeGreaterThan($num){
+		if ($this->function_result > $num) {
+			echo _msgtrue_;
+		} else { echo _msgfalse_; }
 	}
 
 }
